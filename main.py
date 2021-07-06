@@ -1,16 +1,39 @@
-# This is a sample Python script.
+class Node:
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+    def __init__(self, data):
+        print(data)
+        self.left = None
+        self.right = None
+        self.data = data
 
+    def insert(self, data):
+        if self.data:
+            if data < self.data:
+                if self.left is None:
+                    self.left = Node(data)
+                else:
+                    self.left.insert(data)
+            elif data > self.data:
+                if self.right is None:
+                    self.right = Node(data)
+                else:
+                    self.right.insert(data)
+        else:
+            self.data = data
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+    def PrintTree(self):
+        if self.left:
+            self.left.PrintTree()
+        if self.right:
+            self.right.PrintTree()
 
+# Use the insert method to add nodes
+root = Node(12)
+root.insert(6)
+root.insert(14)
+root.insert(3)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+root.PrintTree()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# node = Node('root', Node('left', Node('left.left')), Node('right'))
+# assert deserialize(serialize(node)).left.left.val == 'left.left'
